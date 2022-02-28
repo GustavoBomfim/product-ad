@@ -49,10 +49,12 @@ public class Main {
                     System.out.println(rs.getInt("Id") + ", " + rs.getString("nome"));
 
                     //String response = "This is the response";
-                    t.sendResponseHeaders(200, Long.parseLong(rs.getString("nome")));
+                    t.sendResponseHeaders(200, rs.getString("nome").getBytes().length);
+                    //t.sendResponseHeaders(200, Long.parseLong(rs.getString("nome")));
                     //t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
-                    os.write((int) Long.parseLong(rs.getString("nome")));
+                    //os.write((int) Long.parseLong(rs.getString("nome")));
+                    os.write(rs.getString("nome").getBytes());
                     //os.write(response.getBytes());
                     os.close();
                 }
